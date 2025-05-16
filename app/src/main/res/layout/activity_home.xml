@@ -1,0 +1,274 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#1a1a1a"
+    tools:context=".Home">
+
+    <!-- تضمين شعار أو لوجو -->
+    <include
+        layout="@layout/tolabar"
+        android:id="@+id/form1" />
+
+    <!-- ScrollView مع الكروت المتكررة -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/form1"
+        android:padding="0dp"
+        android:layout_marginTop="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+
+            <!-- الكارت الأول -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/recCard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="6dp"
+                android:clipChildren="true"
+                android:clipToPadding="true"
+                android:foreground="?attr/selectableItemBackground">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="220dp"
+                    android:clipChildren="true"
+                    android:clipToPadding="true">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/cardImage1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/einfach" />
+
+
+                    </FrameLayout>
+                    <ImageView
+                        android:id="@+id/icon1"
+                        android:layout_width="85dp"
+                        android:layout_height="85dp"
+                        android:layout_marginStart="-5dp"
+                        android:layout_marginBottom="-5dp"
+                        android:src="@drawable/iconeinfach"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentBottom="true"
+                        />
+
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- الكارت الثاني -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/recCard1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="6dp"
+                android:clipChildren="true"
+                android:clipToPadding="true"
+                android:foreground="?attr/selectableItemBackground"
+                >
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="220dp"
+                    android:clipChildren="true"
+                    android:clipToPadding="true">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/cardImage2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/mittel" />
+
+                    </FrameLayout>
+                    <ImageView
+                        android:id="@+id/icon2"
+                        android:layout_width="85dp"
+                        android:layout_height="85dp"
+                        android:layout_marginStart="-5dp"
+                        android:layout_marginBottom="-5dp"
+                        android:src="@drawable/iconmittel"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentBottom="true"
+                    />
+
+
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- الكارت الثالث -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/recCard2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="6dp"
+                android:clipChildren="true"
+                android:clipToPadding="true"
+                android:foreground="?attr/selectableItemBackground">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="220dp"
+                    android:clipChildren="true"
+                    android:clipToPadding="true">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/cardImage3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/fortgeschritten" />
+
+
+                    </FrameLayout>
+                    <ImageView
+                        android:id="@+id/icon3"
+                        android:layout_width="85dp"
+                        android:layout_height="85dp"
+                        android:layout_marginStart="-5dp"
+                        android:layout_marginBottom="-5dp"
+                        android:src="@drawable/iconfortgeschritten"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentBottom="true"
+                        />
+
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- الكارت الرابع -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/recCard3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="6dp"
+                android:clipChildren="true"
+                android:clipToPadding="true"
+                android:foreground="?attr/selectableItemBackground">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="220dp"
+                    android:clipChildren="true"
+                    android:clipToPadding="true">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/cardImage4"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/schwierig" />
+
+
+                    </FrameLayout>
+
+                    <ImageView
+                        android:id="@+id/icon4"
+                        android:layout_width="85dp"
+                        android:layout_height="85dp"
+                        android:layout_marginStart="-5dp"
+                        android:layout_marginBottom="-5dp"
+                        android:src="@drawable/iconschwierig"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentBottom="true"
+                        />
+
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/recCard4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="6dp"
+                android:clipChildren="true"
+                android:clipToPadding="true"
+                android:foreground="?attr/selectableItemBackground">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="220dp"
+                    android:clipChildren="true"
+                    android:clipToPadding="true">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/cardImage5"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/anspruchsvoll" />
+
+
+                    </FrameLayout>
+
+                    <ImageView
+                        android:id="@+id/icon5"
+                        android:layout_width="85dp"
+                        android:layout_height="85dp"
+
+                        android:layout_marginStart="-5dp"
+                        android:layout_marginBottom="-5dp"
+                        android:src="@drawable/iconanspruchsvoll"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentBottom="true"
+                        />
+
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+            <RelativeLayout
+                android:id="@+id/banner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:gravity="center_horizontal"
+                />
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+</RelativeLayout>

@@ -1,0 +1,7 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#b5734c" /> <!-- لون الخلفية -->
+    <stroke
+        android:width="2dp"
+        android:color="#b5734c" /> <!-- لون الإطار الأحمر -->
+    <corners android:radius="100dp" /> <!-- اجعل القيمة كبيرة لتكون دائرية -->
+</shape>

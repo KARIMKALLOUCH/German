@@ -1,0 +1,5 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="#b5734c" /> <!-- لون النقطة -->
+    <size android:width="8dp" android:height="8dp" /> <!-- حجم النقطة -->
+</shape>

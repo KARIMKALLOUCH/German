@@ -1,0 +1,679 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#1a1a1a"
+    tools:context=".PageA2">
+
+    <!-- تضمين شعار أو لوجو -->
+    <include
+        layout="@layout/tolabrlogo2"
+        android:id="@+id/form1" />
+
+    <!-- ScrollView مع الكروت المتكررة -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/form1"
+        android:padding="0dp"
+        android:layout_marginTop="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/underlined_text"
+                android:textColor="#DFFFFFFF"
+                android:fontFamily="@font/merriweather"
+
+                android:gravity="center"
+                android:textSize="@dimen/_14ssp"
+                />
+
+            <!-- الكارت الأول -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/themaA2_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="6dp"
+                android:clipChildren="true"
+                android:clipToPadding="true"
+                android:foreground="?attr/selectableItemBackground">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="220dp"
+                    android:clipChildren="true"
+                    android:clipToPadding="true">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/cardImage1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ein_wochenende_auf_dem_land" />
+
+                        <FrameLayout
+                            android:id="@+id/transparentOverlay"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_gravity="bottom"
+                            android:background="#bf363636"
+                            >
+
+                            <TextView
+                                android:id="@+id/cardTitle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/merriweather"
+                                android:padding="8dp"
+                                android:text="Ein Wochenende auf dem Land"
+                                android:textColor="@android:color/white"
+                                android:textSize="15sp" />
+                        </FrameLayout>
+                    </FrameLayout>
+                    <!-- الأيقونة في أعلى اليسار -->
+                    <ImageView
+                        android:id="@+id/statusIconA2"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/baseline_remove_done_24"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/card_border" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- الكارت الثاني -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/themaA2_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="6dp"
+                android:clipChildren="true"
+                android:clipToPadding="true"
+                android:foreground="?attr/selectableItemBackground">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="220dp"
+                    android:clipChildren="true"
+                    android:clipToPadding="true">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/cardImage2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/meine_hobbys" />
+
+                        <FrameLayout
+                            android:id="@+id/transparentOverlay2"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_gravity="bottom"
+                            android:background="#bf363636">
+
+                            <TextView
+                                android:id="@+id/cardTitle2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/merriweather"
+                                android:padding="8dp"
+                                android:text="Meine Hobbys"
+                                android:textColor="@android:color/white"
+                                android:textSize="15sp" />
+                        </FrameLayout>
+                    </FrameLayout>
+                    <ImageView
+                        android:id="@+id/statusIconA2_1"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/baseline_remove_done_24"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/card_border" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- الكارت الثالث -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/themaA2_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="6dp"
+                android:clipChildren="true"
+                android:clipToPadding="true"
+                android:foreground="?attr/selectableItemBackground">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="220dp"
+                    android:clipChildren="true"
+                    android:clipToPadding="true">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/cardImage3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/urlaub_am_meer" />
+
+                        <FrameLayout
+                            android:id="@+id/transparentOverlay3"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_gravity="bottom"
+                            android:background="#bf363636">
+
+                            <TextView
+                                android:id="@+id/cardTitle3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/merriweather"
+                                android:padding="8dp"
+                                android:text="Urlaub am Meer"
+                                android:textColor="@android:color/white"
+                                android:textSize="15sp" />
+                        </FrameLayout>
+                    </FrameLayout>
+                    <ImageView
+                        android:id="@+id/statusIconA2_2"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/baseline_remove_done_24"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/card_border" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- الكارت الرابع -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/themaA2_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="6dp"
+                android:clipChildren="true"
+                android:clipToPadding="true"
+                android:foreground="?attr/selectableItemBackground">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="220dp"
+                    android:clipChildren="true"
+                    android:clipToPadding="true">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/cardImage4"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ein_besuch_im_zoo" />
+
+                        <FrameLayout
+                            android:id="@+id/transparentOverlay4"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_gravity="bottom"
+                            android:background="#bf363636">
+
+                            <TextView
+                                android:id="@+id/cardTitle4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/merriweather"
+                                android:padding="8dp"
+                                android:text="Ein Besuch im Zoo"
+                                android:textColor="@android:color/white"
+                                android:textSize="15sp" />
+                        </FrameLayout>
+                    </FrameLayout>
+                    <ImageView
+                        android:id="@+id/statusIconA2_3"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/baseline_remove_done_24"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/card_border" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+            <!-- الكارت 5 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/themaA2_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="6dp"
+                android:clipChildren="true"
+                android:clipToPadding="true"
+                android:foreground="?attr/selectableItemBackground">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="220dp"
+                    android:clipChildren="true"
+                    android:clipToPadding="true">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/cardImage5"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/die_neue_wohnung" />
+
+                        <FrameLayout
+                            android:id="@+id/transparentOverlay5"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_gravity="bottom"
+                            android:background="#bf363636">
+
+                            <TextView
+                                android:id="@+id/cardTitle5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/merriweather"
+                                android:padding="8dp"
+                                android:text="Die neue Wohnung"
+                                android:textColor="@android:color/white"
+                                android:textSize="15sp" />
+                        </FrameLayout>
+                    </FrameLayout>
+                    <ImageView
+                        android:id="@+id/statusIconA2_4"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/baseline_remove_done_24"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/card_border" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+            <!-- الكارت 6 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/themaA2_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="6dp"
+                android:clipChildren="true"
+                android:clipToPadding="true"
+                android:foreground="?attr/selectableItemBackground">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="220dp"
+                    android:clipChildren="true"
+                    android:clipToPadding="true">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/cardImage6"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ein_tag_in_der_schule" />
+
+                        <FrameLayout
+                            android:id="@+id/transparentOverlay6"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_gravity="bottom"
+                            android:background="#bf363636">
+
+                            <TextView
+                                android:id="@+id/cardTitle6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/merriweather"
+                                android:padding="8dp"
+                                android:text="Ein Tag in der Schule"
+                                android:textColor="@android:color/white"
+                                android:textSize="15sp" />
+                        </FrameLayout>
+                    </FrameLayout>
+                    <ImageView
+                        android:id="@+id/statusIconA2_5"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/baseline_remove_done_24"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/card_border" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+            <!-- الكارت 7 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/themaA2_7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="6dp"
+                android:clipChildren="true"
+                android:clipToPadding="true"
+                android:foreground="?attr/selectableItemBackground">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="220dp"
+                    android:clipChildren="true"
+                    android:clipToPadding="true">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/cardImage7"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/das_lieblingsbuch" />
+
+                        <FrameLayout
+                            android:id="@+id/transparentOverlay7"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_gravity="bottom"
+                            android:background="#bf363636">
+
+                            <TextView
+                                android:id="@+id/cardTitle7"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/merriweather"
+                                android:padding="8dp"
+                                android:text="Das Lieblingsbuch"
+                                android:textColor="@android:color/white"
+                                android:textSize="15sp" />
+                        </FrameLayout>
+                    </FrameLayout>
+                    <ImageView
+                        android:id="@+id/statusIconA2_6"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/baseline_remove_done_24"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/card_border" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+            <!-- الكارت 8 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/themaA2_8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="6dp"
+                android:clipChildren="true"
+                android:clipToPadding="true"
+                android:foreground="?attr/selectableItemBackground">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="220dp"
+                    android:clipChildren="true"
+                    android:clipToPadding="true">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/cardImage8"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ein_tag_ohne_handy" />
+
+                        <FrameLayout
+                            android:id="@+id/transparentOverlay8"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_gravity="bottom"
+                            android:background="#bf363636">
+
+                            <TextView
+                                android:id="@+id/cardTitle8"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/merriweather"
+                                android:padding="8dp"
+                                android:text="Ein Tag ohne Handy"
+                                android:textColor="@android:color/white"
+                                android:textSize="15sp" />
+                        </FrameLayout>
+                    </FrameLayout>
+                    <ImageView
+                        android:id="@+id/statusIconA2_7"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/baseline_remove_done_24"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/card_border" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+            <!-- الكارت 9 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/themaA2_9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="6dp"
+                android:clipChildren="true"
+                android:clipToPadding="true"
+                android:foreground="?attr/selectableItemBackground">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="220dp"
+                    android:clipChildren="true"
+                    android:clipToPadding="true">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/cardImage9"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/der_stadtbummel" />
+
+                        <FrameLayout
+                            android:id="@+id/transparentOverlay9"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_gravity="bottom"
+                            android:background="#bf363636">
+
+                            <TextView
+                                android:id="@+id/cardTitle9"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/merriweather"
+                                android:padding="8dp"
+                                android:text="Der Stadtbummel"
+                                android:textColor="@android:color/white"
+                                android:textSize="15sp" />
+                        </FrameLayout>
+                    </FrameLayout>
+                    <ImageView
+                        android:id="@+id/statusIconA2_8"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/baseline_remove_done_24"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/card_border" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+            <!-- الكارت 10 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/themaA2_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="6dp"
+                android:clipChildren="true"
+                android:clipToPadding="true"
+                android:foreground="?attr/selectableItemBackground">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="220dp"
+                    android:clipChildren="true"
+                    android:clipToPadding="true">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/cardImage10"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/der_ausflug_in_den_wald" />
+
+                        <FrameLayout
+                            android:id="@+id/transparentOverlay10"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_gravity="bottom"
+                            android:background="#bf363636">
+
+                            <TextView
+                                android:id="@+id/cardTitle10"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/merriweather"
+                                android:padding="8dp"
+                                android:text="Der Ausflug in den Wald"
+                                android:textColor="@android:color/white"
+                                android:textSize="15sp" />
+                        </FrameLayout>
+                    </FrameLayout>
+                    <ImageView
+                        android:id="@+id/statusIconA2_9"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/baseline_remove_done_24"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/card_border" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+            <RelativeLayout
+                android:id="@+id/banner2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:gravity="center_horizontal"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
