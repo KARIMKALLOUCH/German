@@ -61,6 +61,7 @@ dependencies {
     implementation 'com.android.tools:r8:8.7.18'
 
     implementation 'com.startapp:inapp-sdk:5.1.0'
+    implementation 'androidx.core:core:1.12.0'
 
 
 

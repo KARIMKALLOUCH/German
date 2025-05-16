@@ -2,12 +2,18 @@ package com.devkallouch.german;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Gravity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
@@ -20,6 +26,8 @@ import com.firebase.client.ValueEventListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.startapp.sdk.ads.banner.Banner;
 import com.startapp.sdk.adsbase.StartAppSDK;
 
@@ -36,7 +44,8 @@ public class DetailActvity extends AppCompatActivity {
     RelativeLayout banner5;
     String showAds5;
 
-
+    private Toolbar toolbar;
+    private TextView centeredTitle;
     int currentPosition;
 
     @Override
@@ -87,9 +96,11 @@ public class DetailActvity extends AppCompatActivity {
         handler = new Handler();
         back = findViewById(R.id.left1_icon);
         share = findViewById(R.id.right1_icon);
+
+
         TextView title = findViewById(R.id.toolbar1_text);
         TextView description = findViewById(R.id.description);
-        imageView = findViewById(R.id.recImage);
+        imageView = findViewById(R.id.header_image);
         seekbBarSpeed = findViewById(R.id.speedSeekBar);
         // الحصول على البيانات المرسلة من النشاط السابق
         Intent intent = getIntent();
@@ -106,6 +117,20 @@ public class DetailActvity extends AppCompatActivity {
         description.setText(receivedDescription);
         imageView.setImageResource(receivedImage);
 
+        //////////////////////////////
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
+
+        setupCollapsingToolbar();
+        setupCenteredTitle(receivedTitle);
+        setupAppBarListener();
+
+        ////////////////////////////
         // إعداد زر الرجوع
       /*  back.setOnClickListener(v -> {
             Intent backIntent = new Intent(DetailActvity.this, PageA1.class);
@@ -333,6 +358,63 @@ public class DetailActvity extends AppCompatActivity {
 
             @Override
             public void onCancelled(FirebaseError firebaseError) {
+            }
+        });
+    }
+    private void setupCollapsingToolbar() {
+        CollapsingToolbarLayout collapsingToolbar = findViewById(R.id.collapsing_toolbar);
+        collapsingToolbar.setTitle("");
+        collapsingToolbar.setCollapsedTitleTextColor(getResources().getColor(android.R.color.white));
+        collapsingToolbar.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
+    }
+
+    private void setupCenteredTitle(String titleText) {
+        centeredTitle = new TextView(this);
+        centeredTitle.setText(titleText);
+        centeredTitle.setTextSize(18);
+        centeredTitle.setTextColor(getResources().getColor(android.R.color.white));
+        centeredTitle.setGravity(Gravity.CENTER);
+        centeredTitle.setPadding(16, 16, 54, 16);
+        centeredTitle.setVisibility(View.GONE);
+
+        Typeface customFont = ResourcesCompat.getFont(this, R.font.anton);
+        centeredTitle.setTypeface(customFont);
+
+
+
+        int heightInPx = (int) (50 * getResources().getDisplayMetrics().density);
+
+        Toolbar.LayoutParams layoutParams = new Toolbar.LayoutParams(
+                Toolbar.LayoutParams.MATCH_PARENT,
+                heightInPx
+        );
+        layoutParams.gravity = Gravity.CENTER;
+        centeredTitle.setLayoutParams(layoutParams);
+
+        toolbar.addView(centeredTitle);
+    }
+
+    private void setupAppBarListener() {
+        AppBarLayout appBarLayout = findViewById(R.id.appbar);
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            boolean isTitleVisible = false;
+            int scrollRange = -1;
+
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (scrollRange == -1) {
+                    scrollRange = appBarLayout.getTotalScrollRange();
+                }
+
+                if (scrollRange + verticalOffset == 0) {
+                    centeredTitle.setVisibility(View.VISIBLE);
+                    toolbar.setBackgroundColor(Color.parseColor("#b5734c"));
+                    isTitleVisible = true;
+                } else if (isTitleVisible) {
+                    centeredTitle.setVisibility(View.GONE);
+                    toolbar.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                    isTitleVisible = false;
+                }
             }
         });
     }

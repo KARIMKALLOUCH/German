@@ -1,229 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1a1a1a">
+
+    <!-- AppBar بالصورة والعنوان -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#1a1a1a"
-        tools:context=".DetailActvity">
+        android:layout_height="220dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:fitsSystemWindows="true">
 
-        <!-- العنصر "include" خارج ScrollView
-        <include
-            android:id="@+id/include"
-            layout="@layout/tolabrlogo2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" /> -->
-
-
-        <!-- ScrollView يحتوي على باقي العناصر -->
-        <ScrollView
-            android:id="@+id/scrol"
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/seek2"
-            >
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:titleEnabled="true"
+            android:fitsSystemWindows="true">
 
+            <!-- صورة الخلفية -->
+            <ImageView
+                android:id="@+id/header_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/supermarkt"
+                android:fitsSystemWindows="true" />
 
+            <!-- ✅ العنوان داخل الصورة وفي الأسفل -->
+            <TextView
+                android:id="@+id/toolbar1_text"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_gravity="bottom"
+                android:padding="16dp"
+                android:text="karim"
+                android:fontFamily="@font/merriweather"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:textSize="15sp"
+                android:background="#bf363636"
+                 />
+
+            <!-- التولبار -->
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- المحتوى المتحرك -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="80dp"
+            android:orientation="vertical">
+
+            <!-- SeekBar والصوت -->
             <LinearLayout
+                android:id="@+id/seek1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingStart="0dp"
+                android:paddingEnd="0dp">
 
-                android:orientation="vertical">
-
-                <!-- CardView -->
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/recCardd1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="0dp"
-                    app:cardCornerRadius="0dp"
-                    app:cardElevation="6dp"
-                    android:clipChildren="true"
-                    android:clipToPadding="true">
-
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="220dp"
-                        android:clipChildren="true"
-                        android:clipToPadding="true">
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                            <ImageView
-                                android:id="@+id/recImage"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/supermarkt"
-                                />
-                            <FrameLayout
-                                android:id="@+id/transparentOverlay"
-                                android:layout_width="match_parent"
-                                android:layout_height="50dp"
-                                android:layout_gravity="bottom"
-                                android:background="#bf363636"
-                                >
-
-                                <TextView
-                                    android:id="@+id/toolbar1_text"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:padding="8dp"
-                                    android:fontFamily="@font/merriweather"
-
-                                    android:text="hello einkaufen"
-                                    android:textColor="@android:color/white"
-                                    android:textSize="15sp" />
-                            </FrameLayout>
-
-
-                        </FrameLayout>
-
-
-
-                    </RelativeLayout>
-                </androidx.cardview.widget.CardView>
-
-
-
-                <!-- RelativeLayout مع SeekBar -->
-                <LinearLayout
-                    android:id="@+id/seek1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-
-                    <!-- ImageView -->
-                    <ImageView
-                     android:id="@+id/btn_play"
+                <ImageView
+                    android:id="@+id/btn_play"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:layout_marginStart="8dp"
-                    app:srcCompat="@drawable/baseline_play_circle_24" />
+                    android:src="@drawable/baseline_play_circle_24" />
 
-                    <!-- SeekBar -->
-                    <SeekBar
-                        android:id="@+id/seekBar"
-                        android:layout_width="0dp"
-                        android:layout_height="42dp"
+                <SeekBar
+                    android:id="@+id/seekBar"
+                    android:layout_width="0dp"
+                    android:layout_height="42dp"
                     android:layout_weight="1"
                     android:layout_marginStart="12dp"
                     android:layout_marginEnd="12dp"
                     android:background="@drawable/seekbar_green"
                     android:progressTint="#363636"
                     android:thumbTint="#363636" />
-                </LinearLayout>
-
-                <!-- TextView -->
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:lineSpacingExtra="4dp"
-                    android:id="@+id/description"
-                    android:scaleType="centerCrop"
-
-                    android:padding="5dp"
-                    android:text="Ich habe mich entschieden, Medizinische Assistenz zu studieren, weil ich Menschen helfen möchte und mich für Gesundheit und Medizin interessiere. Mein Ziel ist es, in einer Klinik oder einem Krankenhaus zu arbeiten und dabei Patienten in ihrem Alltag zu unterstützen. In Zukunft möchte ich mich weiterbilden und vielleicht in einem speziellen Bereich der Medizin arbeiten.
-Ich habe mich entschieden, Medizinische Assistenz zu studieren, weil ich Menschen helfen möchte und mich für Gesundheit und Medizin interessiere. Mein Ziel ist es, in einer Klinik oder einem Krankenhaus zu arbeiten und dabei Patienten in ihrem Alltag zu unterstützen. "
-                    android:textColor="@color/white"
-                    android:textIsSelectable="true"
-                    android:fontFamily="@font/merriweather"
-                    android:textSize="15sp"
-                    android:justificationMode="none"/>
-                <RelativeLayout
-                    android:id="@+id/banner5"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"/>
-
             </LinearLayout>
 
+            <!-- النص -->
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:lineSpacingExtra="4dp"
+                android:padding="5dp"
+                android:textIsSelectable="true"
 
-        </ScrollView>
-    <RelativeLayout
-        android:id="@+id/seek2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:background="#1a1a1a"
-        android:layout_alignParentBottom="true"
-       >
+                android:scaleType="centerCrop"
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Speed"
-            android:layout_marginStart="9dp"
-            android:layout_marginTop="4dp"
-            android:textSize="17sp"
-            android:layout_marginBottom="6dp"
-            android:fontFamily="@font/merriweather"
-            android:textColor="#b5734c"/>
+                android:text="@string/Mein_Tag"
+                android:textColor="@color/white"
+                android:fontFamily="@font/merriweather"
+                android:textSize="15sp"
+                android:justificationMode="none"
+                />
 
-        <SeekBar
-            android:id="@+id/speedSeekBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            <!-- إعلان -->
+            <RelativeLayout
+                android:id="@+id/banner5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
-            android:max="200"
-            android:progress="100"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:thumb="@drawable/custom_thumb"
-            android:layout_marginStart="70dp"
-            android:layout_marginTop="9dp"
-            android:layout_marginEnd="12dp"
-            android:progressBackgroundTint="#595858"
-            android:progressTint="#b5734c"
-            android:thumbTint="#b5734c" />
-
-    </RelativeLayout>
-
-
+    <!-- أيقونة الحذف -->
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
         android:layout_margin="5dp"
         android:padding="5dp"
+        android:elevation="12dp">
 
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true">
-        <View
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginEnd="7dp"
-
-            android:background="@drawable/image_border" />
-
-        <ImageView
-            android:id="@+id/left1_icon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_centerInParent="true"
-
-            android:scaleType="centerCrop"
-            android:layout_margin="3dp"
-            android:src="@drawable/baseline_arrow_back_ios_24"
-            />
-
-
-
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:padding="5dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        >
         <View
             android:layout_width="35dp"
             android:layout_height="35dp"
@@ -236,14 +147,69 @@ Ich habe mich entschieden, Medizinische Assistenz zu studieren, weil ich Mensche
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_centerInParent="true"
-
             android:scaleType="centerCrop"
-            android:layout_margin="3dp"
-            android:src="@drawable/baseline_share_24"
-            />
-
-
+            android:src="@drawable/baseline_share_24" />
     </RelativeLayout>
 
+    <!-- أيقونة الرجوع -->
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|start"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:elevation="12dp">
 
+        <View
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginEnd="7dp"
+
+            android:background="@drawable/image_border" />
+
+        <ImageView
+            android:id="@+id/left1_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_centerInParent="true"
+            android:scaleType="centerCrop"
+
+            android:src="@drawable/baseline_arrow_back_ios_24" />
     </RelativeLayout>
+
+    <!-- 🔽 Seek2 ثابت في الأسفل -->
+    <RelativeLayout
+        android:id="@+id/seek2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:padding="10dp"
+        android:background="#1a1a1a">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Speed"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="6dp"
+            android:textSize="17sp"
+            android:fontFamily="@font/merriweather"
+            android:textColor="#b5734c" />
+
+        <SeekBar
+            android:id="@+id/speedSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="200"
+            android:progress="100"
+            android:layout_marginTop="9dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginEnd="12dp"
+            android:thumb="@drawable/custom_thumb"
+            android:progressBackgroundTint="#595858"
+            android:progressTint="#b5734c"
+            android:thumbTint="#b5734c" />
+    </RelativeLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
