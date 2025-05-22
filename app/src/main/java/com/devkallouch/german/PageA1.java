@@ -1,67 +1,33 @@
 package com.devkallouch.german;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.firebase.client.DataSnapshot;
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.ValueEventListener;
-import com.google.android.gms.ads.AdError;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.FullScreenContentCallback;
-import com.google.android.gms.ads.LoadAdError;
-import com.google.android.gms.ads.OnUserEarnedRewardListener;
-
-import com.google.android.gms.ads.rewarded.RewardItem;
-import com.google.android.gms.ads.rewarded.RewardedAd;
-import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
-import com.startapp.sdk.ads.banner.Banner;
-import com.startapp.sdk.adsbase.Ad;
-import com.startapp.sdk.adsbase.StartAppAd;
-import com.startapp.sdk.adsbase.StartAppSDK;
-import com.startapp.sdk.adsbase.adlisteners.AdEventListener;
-import com.startapp.sdk.adsbase.adlisteners.VideoListener;
-
+import com.devkallouch.german.AdsManager.BannerAdsManager;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PageA1 extends AppCompatActivity {
-       DatabaseHelper dbHelper; // قاعدة البيانات
-
-    private RewardedAd mRewardedAd1;
-    String showAds;
-
+    DatabaseHelper dbHelper; // قاعدة البيانات
     ImageView back;
     TextView textname;
-    RelativeLayout banner1;
-    String data1;
-    long lastAdTime ;
-    long currentTime ;
-    long adCooldown = 2 * 60 * 1000;
+
     private RecyclerView recyclerView;
     private List<CardItem> cardItems;
 
     private CardAdapter adapter;
+    private ViewGroup banner1;  // مثلا LinearLayout أو FrameLayout حاوي مكان الإعلان
+    private BannerAdsManager bannerAdsManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,40 +39,10 @@ public class PageA1 extends AppCompatActivity {
         setContentView(R.layout.activity_page_a1);
         /////////////////banner ///////////
         banner1 = findViewById(R.id.banner1);
-        // Firebase Reference
-        Firebase firebaseAds = new Firebase("https://german-4bc62-default-rtdb.firebaseio.com/ads_enabled");
-        firebaseAds.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Boolean adsEnabled = dataSnapshot.getValue(Boolean.class);
 
-                if (adsEnabled != null && adsEnabled) {
-                    // إذا كانت الإعلانات مفعّلة، تابع تنفيذ كود البانر
-                    Firebase firebase = new Firebase("https://german-4bc62-default-rtdb.firebaseio.com/show_ads");
-                    firebase.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot snapshot) {
-                            showAds = snapshot.getValue(String.class);
-                            if (showAds.equals("admob")) {
-                                fireAds("https://german-4bc62-default-rtdb.firebaseio.com/admob/banner_ad_unit_id");
-                            } else if (showAds.equals("startapp")) {
-                                fireStartApp();
-                            }
-                        }
+        bannerAdsManager = new BannerAdsManager(this, banner1);
+        bannerAdsManager.loadBannerAds();
 
-                        @Override
-                        public void onCancelled(FirebaseError firebaseError) {
-                        }
-                    });
-                } else {
-                    // إذا كانت الإعلانات معطّلة، لا تقم بإضافة أي بانر
-                }
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-            }
-        });
         /////////////////////
         textname = findViewById(R.id.toolbar2_text);
         textname.setText("Niveau A1");
@@ -129,7 +65,6 @@ public class PageA1 extends AppCompatActivity {
         // تهيئة RecyclerView
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
-        // recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, 16, true));
 
 
         // إعداد قائمة العناصر
@@ -137,6 +72,7 @@ public class PageA1 extends AppCompatActivity {
         adapter = new CardAdapter(cardItems, this);
         recyclerView.setAdapter(adapter);
         ///////////
+
 
     }
     private List<CardItem> loadCardItem() {
@@ -157,7 +93,9 @@ public class PageA1 extends AppCompatActivity {
                                 "🔹 *Niveau:* A1\n" +
                                 "📌 *Titel:* Mein Tag\n\n" +
                                 "📝 *Text:*\n" + getString(R.string.Mein_Tag) + "\n\n" +
-                                "🎧 Höre und lese, um dein Deutsch zu verbessern! 🚀🇩🇪",
+                                "🎧  Höre und lese, um dein Deutsch zu verbessern! 🚀🇩🇪\n\n" +
+                                "📲 *Download the app now:*\n" +
+                                "https://play.google.com/store/apps/details?id=com.devkallouch.german",
                         icon,
                         1,
                         i, // cardId
@@ -174,7 +112,9 @@ public class PageA1 extends AppCompatActivity {
                                 "🔹 *Niveau:* A1\n" +
                                 "📌 *Titel:* Einkaufen im Supermarkt\n\n" +
                                 "📝 *Text:*\n" + getString(R.string.Einkaufen_im_Supermarkt) + "\n\n" +
-                                "🎧 Höre und lese, um dein Deutsch zu verbessern! 🚀🇩🇪",
+                                "🎧  Höre und lese, um dein Deutsch zu verbessern! 🚀🇩🇪\n\n" +
+                                    "📲 *Download the app now:*\n" +
+                                    "https://play.google.com/store/apps/details?id=com.devkallouch.german",
                         icon,
                         2,
                         i, // cardId
@@ -191,8 +131,9 @@ public class PageA1 extends AppCompatActivity {
                             "🔹 *Niveau:* A1\n" +
                             "📌 *Titel:* Das Wetter heute\n\n" +
                             "📝 *Text:*\n" + getString(R.string.Das_Wetter_heute) + "\n\n" +
-                            "🎧 Höre und lese, um dein Deutsch zu verbessern! 🚀🇩🇪",
-                    icon,
+                            "🎧  Höre und lese, um dein Deutsch zu verbessern! 🚀🇩🇪\n\n" +
+                            "📲 *Download the app now:*\n" +
+                            "https://play.google.com/store/apps/details?id=com.devkallouch.german",                    icon,
                     3,
                     i,
                     "PageA1"
@@ -209,7 +150,9 @@ public class PageA1 extends AppCompatActivity {
                                 "🔹 *Niveau:* A1\n" +
                                 "📌 *Titel:* Mein Lieblingsessen\n\n" +
                                 "📝 *Text:*\n" + getString(R.string.Mein_Lieblingsessen) + "\n\n" +
-                                "🎧 Höre und lese, um dein Deutsch zu verbessern! 🚀🇩🇪",
+                                "🎧  Höre und lese, um dein Deutsch zu verbessern! 🚀🇩🇪\n\n" +
+                                    "📲 *Download the app now:*\n" +
+                                    "https://play.google.com/store/apps/details?id=com.devkallouch.german",
                         icon,
                         4,
                         i,
@@ -227,7 +170,9 @@ public class PageA1 extends AppCompatActivity {
                                 "🔹 *Niveau:* A1\n" +
                                 "📌 *Titel:* Im Park\n\n" +
                                 "📝 *Text:*\n" + getString(R.string.Im_Park) + "\n\n" +
-                                "🎧 Höre und lese, um dein Deutsch zu verbessern! 🚀🇩🇪",
+                                "🎧  Höre und lese, um dein Deutsch zu verbessern! 🚀🇩🇪\n\n" +
+                                    "📲 *Download the app now:*\n" +
+                                    "https://play.google.com/store/apps/details?id=com.devkallouch.german",
                         icon,
                         5,
                         i,
@@ -245,7 +190,9 @@ public class PageA1 extends AppCompatActivity {
                                 "🔹 *Niveau:* A1\n" +
                                 "📌 *Titel:* Meine Familie\n\n" +
                                 "📝 *Text:*\n" + getString(R.string.Meine_Familie) + "\n\n" +
-                                "🎧 Höre und lese, um dein Deutsch zu verbessern! 🚀🇩🇪",
+                                "🎧  Höre und lese, um dein Deutsch zu verbessern! 🚀🇩🇪\n\n" +
+                                    "📲 *Download the app now:*\n" +
+                                    "https://play.google.com/store/apps/details?id=com.devkallouch.german",
                         icon,
                         6,
                         i,
@@ -263,7 +210,9 @@ public class PageA1 extends AppCompatActivity {
                                 "🔹 *Niveau:* A1\n" +
                                 "📌 *Titel:* Mein Haus\n\n" +
                                 "📝 *Text:*\n" + getString(R.string.Mein_Haus) + "\n\n" +
-                                "🎧 Höre und lese, um dein Deutsch zu verbessern! 🚀🇩🇪",
+                                "🎧  Höre und lese, um dein Deutsch zu verbessern! 🚀🇩🇪\n\n" +
+                                    "📲 *Download the app now:*\n" +
+                                    "https://play.google.com/store/apps/details?id=com.devkallouch.german",
                         icon,
                         7,
                         i,
@@ -281,7 +230,9 @@ public class PageA1 extends AppCompatActivity {
                                 "🔹 *Niveau:* A1\n" +
                                 "📌 *Titel:* Das Haustier\n\n" +
                                 "📝 *Text:*\n" + getString(R.string.Das_Haustier) + "\n\n" +
-                                "🎧 Höre und lese, um dein Deutsch zu verbessern! 🚀🇩🇪",
+                                "🎧  Höre und lese, um dein Deutsch zu verbessern! 🚀🇩🇪\n\n" +
+                                    "📲 *Download the app now:*\n" +
+                                    "https://play.google.com/store/apps/details?id=com.devkallouch.german",
                         icon,
                         8,
                         i,
@@ -299,7 +250,9 @@ public class PageA1 extends AppCompatActivity {
                                 "🔹 *Niveau:* A1\n" +
                                 "📌 *Titel:* Im Restaurant\n\n" +
                                 "📝 *Text:*\n" + getString(R.string.Im_Restaurant) + "\n\n" +
-                                "🎧 Höre und lese, um dein Deutsch zu verbessern! 🚀🇩🇪",
+                                "🎧  Höre und lese, um dein Deutsch zu verbessern! 🚀🇩🇪\n\n" +
+                                    "📲 *Download the app now:*\n" +
+                                    "https://play.google.com/store/apps/details?id=com.devkallouch.german",
                         icon,
                         9,
                         i,
@@ -317,7 +270,9 @@ public class PageA1 extends AppCompatActivity {
                                 "🔹 *Niveau:* A1\n" +
                                 "📌 *Titel:* Der neue Freund\n\n" +
                                 "📝 *Text:*\n" + getString(R.string.Der_neue_Freund) + "\n\n" +
-                                "🎧 Höre und lese, um dein Deutsch zu verbessern! 🚀🇩🇪",
+                                "🎧  Höre und lese, um dein Deutsch zu verbessern! 🚀🇩🇪\n\n" +
+                                    "📲 *Download the app now:*\n" +
+                                    "https://play.google.com/store/apps/details?id=com.devkallouch.german",
                         icon,
                         10,
                         i,
@@ -359,41 +314,9 @@ public class PageA1 extends AppCompatActivity {
         super.onBackPressed();
     }
 
-    public void fireAds(String adsUrl) {
-        Firebase firebase = new Firebase(adsUrl);
-        firebase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String data1 = dataSnapshot.getValue(String.class);
-                AdView mAdView = new AdView(PageA1.this);
-                mAdView.setAdUnitId(data1);
-                banner1.addView(mAdView);
-                mAdView.setAdSize(AdSize.BANNER);
-                AdRequest adRequest = new AdRequest.Builder().build();
-                mAdView.loadAd(adRequest);
-            }
 
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-            }
-        });
-    }
 
-    public void fireStartApp() {
-        Firebase firebase = new Firebase("https://german-4bc62-default-rtdb.firebaseio.com/startapp/banner_app_id");
-        firebase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String appId = dataSnapshot.getValue(String.class);
-                StartAppSDK.init(PageA1.this, appId, false);
-                Banner startAppBanner = new Banner(PageA1.this);
-                banner1.addView(startAppBanner);
-            }
 
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-            }
-        });
-    }
+
 
 }

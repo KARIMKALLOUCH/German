@@ -14,22 +14,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
-
-import com.firebase.client.DataSnapshot;
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.ValueEventListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.AdView;
+import com.devkallouch.german.AdsManager.BannerAdsManager;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.startapp.sdk.ads.banner.Banner;
-import com.startapp.sdk.adsbase.StartAppSDK;
+
 
 public class DetailActvity extends AppCompatActivity {
     ImageView back;
@@ -41,12 +33,13 @@ public class DetailActvity extends AppCompatActivity {
     SeekBar seekBar, seekbBarSpeed;
     Runnable runnable;
     Handler handler;
-    RelativeLayout banner5;
     String showAds5;
 
     private Toolbar toolbar;
     private TextView centeredTitle;
     int currentPosition;
+    private ViewGroup banner5;
+    private BannerAdsManager bannerAdsManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,41 +47,10 @@ public class DetailActvity extends AppCompatActivity {
         setContentView(R.layout.activity_detail_actvity);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         banner5 = findViewById(R.id.banner5);
+        bannerAdsManager = new BannerAdsManager(this,banner5);
+        bannerAdsManager.loadBannerAds();
 
-        // Firebase Reference
-        Firebase firebaseAds = new Firebase("https://german-4bc62-default-rtdb.firebaseio.com/ads_enabled");
-        firebaseAds.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Boolean adsEnabled = dataSnapshot.getValue(Boolean.class);
 
-                if (adsEnabled != null && adsEnabled) {
-                    // إذا كانت الإعلانات مفعّلة، تابع تنفيذ كود البانر
-                    Firebase firebase = new Firebase("https://german-4bc62-default-rtdb.firebaseio.com/show_ads");
-                    firebase.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot snapshot) {
-                            showAds5 = snapshot.getValue(String.class);
-                            if (showAds5.equals("admob")) {
-                                fireAds5("https://german-4bc62-default-rtdb.firebaseio.com/admob/banner_ad_unit_id");
-                            } else if (showAds5.equals("startapp")) {
-                                fireStartApp5();
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(FirebaseError firebaseError) {
-                        }
-                    });
-                } else {
-                    // إذا كانت الإعلانات معطّلة، لا تقم بإضافة أي بانر
-                }
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-            }
-        });
 
         // ربط العناصر من واجهة المستخدم
         play = findViewById(R.id.btn_play);
@@ -323,44 +285,7 @@ public class DetailActvity extends AppCompatActivity {
             updateSeekBar();
         }
     }
-    public void fireAds5(String adsUrl) {
-        Firebase firebase = new Firebase(adsUrl);
-        firebase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String data1 = dataSnapshot.getValue(String.class);
-                AdView mAdView = new AdView(DetailActvity.this);
-                mAdView.setAdUnitId(data1);
-                banner5.addView(mAdView);
-                mAdView.setAdSize(AdSize.BANNER);
-                AdRequest adRequest = new AdRequest.Builder().build();
-                mAdView.loadAd(adRequest);
-            }
 
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-            }
-        });
-    }
-
-    public void fireStartApp5() {
-        Firebase firebase = new Firebase("https://german-4bc62-default-rtdb.firebaseio.com/startapp/banner_app_id");
-        firebase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String appId = dataSnapshot.getValue(String.class);
-                StartAppSDK.setTestAdsEnabled(true);
-
-                StartAppSDK.init(DetailActvity.this, appId, false);
-                Banner startAppBanner = new Banner(DetailActvity.this);
-                banner5.addView(startAppBanner);
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-            }
-        });
-    }
     private void setupCollapsingToolbar() {
         CollapsingToolbarLayout collapsingToolbar = findViewById(R.id.collapsing_toolbar);
         collapsingToolbar.setTitle("");

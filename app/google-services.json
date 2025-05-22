@@ -1,10 +1,30 @@
 {
   "project_info": {
     "project_number": "323174527983",
+    "firebase_url": "https://german-4bc62-default-rtdb.firebaseio.com",
     "project_id": "german-4bc62",
     "storage_bucket": "german-4bc62.firebasestorage.app"
   },
   "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:323174527983:android:ba1f0831480c764a22fc1a",
+        "android_client_info": {
+          "package_name": "com.devkallouch.german"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDX5BD7F39lB3mCC1foiFsTcT1OO7uHRyg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
     {
       "client_info": {
         "mobilesdk_app_id": "1:323174527983:android:ddb260bf7cc8f4c322fc1a",
